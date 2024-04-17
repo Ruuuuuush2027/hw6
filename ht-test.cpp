@@ -19,30 +19,39 @@ int main()
 
     // This is just arbitrary code. Change it to test whatever you like about your 
     // hash table implementation.
-    for(size_t i = 0; i < 10; i++){
+    for(size_t i = 0; i < 5; i++){
         std::stringstream ss;
         ss << "hi" << i;
         ht.insert({ss.str(), i});
     }
+    cout << "HT size: " << ht.size() << endl << endl;
     if( ht.find("hi1") != nullptr ){
         cout << "Found hi1" << endl;
         ht["hi1"] += 1;
         cout << "Incremented hi1's value to: " << ht["hi1"] << endl;
     }
-    if( ht.find("doesnotexist") == nullptr ){
-        cout << "Did not find: doesnotexist" << endl;
+
+    ht.reportAll(cout);
+    ht.remove("hi3");
+    ht.remove("hi4");
+    cout << "HT size: " << ht.size() << endl << endl;
+
+    for(size_t i = 5; i < 10; i++){
+        std::stringstream ss;
+        ss << "hi" << i;
+        ht.insert({ss.str(), i});
     }
-    cout << "HT size: " << ht.size() << endl;
-    ht.remove("hi7");
-    ht.remove("hi9");
-    cout << "HT size: " << ht.size() << endl;
-    if( ht.find("hi9") != nullptr ){
-        cout << "Found hi9" << endl;
-    }
-    else {
-        cout << "Did not find hi9" << endl;
-    }
-    ht.insert({"hi7",17});
-    cout << "size: " << ht.size() << endl;
+
+    ht.reportAll(cout);
+
+    // cout << "HT size: " << ht.size() << endl;
+    // if( ht.find("hi9") != nullptr ){
+    //     cout << "Found hi9" << endl;
+    // }
+    // else {
+    //     cout << "Did not find hi9" << endl;
+    // }
+    // ht.insert({"hi7",17});
+    // cout << "size: " << ht.size() << endl;
     return 0;
 }
